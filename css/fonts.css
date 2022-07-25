@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+
+*{
+    font-family: 'Dosis', sans-serif;
+}
+
+.menu-btn{
+    width: 30%;
+    margin-bottom: 15px;
+}
+
+.circle-btn {
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid #b4b4b4;
+    text-align: center;
+}
