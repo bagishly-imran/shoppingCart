@@ -31,8 +31,11 @@ list.map(fruit => {
     return (
         $(content).append(`
             <div class="card col-3" id = {${fruit.id}}>
-                <div class="card-body">
-                    ${fruit.name}
+                <div class="card-body d-flex justify-content-between w-100">
+                    <strong>
+                        ${fruit.name}
+                    </strong>
+                    $${fruit.price}
                 </div>
                 <button
                     type = 'button'
