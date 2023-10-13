@@ -30,9 +30,9 @@ if(local) {
 list.map(fruit => {
     return (
         $(content).append(`
-            <div class="card col-3" id = {${fruit.id}}>
-                <div class="card-body d-flex justify-content-between w-100">
-                    <strong>
+            <div class="my-card card p-2" id = {${fruit.id}}>
+                <div class="card-body d-flex justify-content-between w-100 p-1">
+                    <strong class = "card-title">
                         ${fruit.name}
                     </strong>
                     $${fruit.price}
@@ -41,7 +41,7 @@ list.map(fruit => {
                     type = 'button'
                     class = 'button btn btn-dark'
                     onClick = {addToCard(${fruit.id})}
-                >Add to Card</button>
+                >Add to Basket</button>
             </div>
         `)
     )
@@ -65,6 +65,7 @@ const addToCard = (id) => {
 const deleteCard = (id) => {
     const removeCard = cards.filter(card => {return card.id !== id})
     localStorage.setItem('cards', JSON.stringify(removeCard))
+    location.reload();
 }
 
 // Bu funksiyadir ve cagirildigi yerde daxilindeki kodlari tetbiq edir...
@@ -83,16 +84,26 @@ const deleteCount = (id) => {
     }     
     localStorage.setItem('cards', JSON.stringify(cards))
     quantityControll();
+    location.reload();
 }
+
+
 
 // BU KOD LOCALSTORAGE - de olan mehsullari cards seyfesine add (elave) edir.
 if(local) {
 
+    getLocalData()
+
+}
+
+function getLocalData () {
+    
     // Bu kod local data - da olan umumi mehsulun qiymetini hesablayir
     const allTotalProducts = local.reduce((sum, card) => {
         return sum + (card.quantity * card.price)
     },0)
-
+    
+    
     // Bu if kodu innerHTML in diger fayllarda istifade olunmadiqi ucun xeta vermemesi ucundur...
     if(location.pathname.includes('/shoppingCard.html')) {
 
@@ -103,7 +114,7 @@ if(local) {
     local.map(fruit => {
         return (
             $(shopCards).append(`
-                <div class="card col-3" id = {${fruit.id}}>
+                <div class="my-card card p-2" id = {${fruit.id}}>
                     <div class="card-body gap-1">
                         <h5>${fruit.name}</h5>
                         <h5>Total: ${(fruit.quantity * fruit.price).toFixed(2)}$</h5>
@@ -129,5 +140,5 @@ if(local) {
             `)
         )
     });
-    
-}
+
+} 
